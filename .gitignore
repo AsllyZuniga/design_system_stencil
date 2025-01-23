@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Stencil build output
+dist/
+www/
+build/
+loader/
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Lockfiles (if you're not using them in version control)
+package-lock.json
+yarn.lock
+
+# Environment variables (if used)
+.env
+.env.local
