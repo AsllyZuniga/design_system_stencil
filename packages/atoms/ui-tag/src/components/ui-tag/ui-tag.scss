@@ -1,3 +1,29 @@
 :host {
-  display: block;
+  display: inline-block;
+
+  .ui-tag {
+    border-radius: 10px;
+    padding: 10px;
+
+    span{
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+  .tag--success{
+    background-color: #619B2E;
+    color: #fff;
+  }
+  .tag--warning{
+    background-color: #e12f2f;
+    color: #fff;
+  }
+  .tag--danger{
+    background-color: #fff1f0;
+    color: #fff;
+  }
+  .tag--info{
+    background-color: #f7f3e3;
+    color: #fff;
+  }
 }

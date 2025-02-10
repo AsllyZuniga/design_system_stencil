@@ -1,17 +1,20 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from "@stencil/core";
+type ColorType = "success" | "error" | "warning" | "info" | "completed";
 
 @Component({
-  tag: 'ui-tag',
-  styleUrl: 'ui-tag.scss',
+  tag: "ui-tag",
+  styleUrl: "ui-tag.scss",
   shadow: true,
 })
 export class UiTag {
+  @Prop() text: string = "";
+  @Prop() color: ColorType = "success";
+
   render() {
     return (
-      <Host>
-        Hola mundo
-        <slot></slot>
-      </Host>
+      <div class={`ui-tag tag--${this.color}`}>
+        <span>{this.text}</span>
+      </div>
     );
   }
 }

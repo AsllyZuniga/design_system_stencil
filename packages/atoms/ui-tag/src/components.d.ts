@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiTag {
+        "color": ColorType;
+        "text": string;
     }
 }
 declare global {
@@ -22,6 +24,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiTag {
+        "color"?: ColorType;
+        "text"?: string;
     }
     interface IntrinsicElements {
         "ui-tag": UiTag;
