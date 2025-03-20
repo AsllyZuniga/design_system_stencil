@@ -1,9 +1,16 @@
 :host {
   display: block;
 
-.ui-input{
-  width: 100%;
+  .ui-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-  input{}
-}
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
 }
