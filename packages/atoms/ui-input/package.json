@@ -1,0 +1,12 @@
+{
+  "name": "@design_system_stencil/ui-input",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist wwww",
+    "build": "npm run clean && stencil build",
+    "start": "stencil build --watch --serve"
+  }
+}
