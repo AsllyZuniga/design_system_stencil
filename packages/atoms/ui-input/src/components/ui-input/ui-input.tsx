@@ -9,17 +9,15 @@ export class UiInput {
   @Prop() placeholder: string = "";
   @Prop() value: string = "";
   @Prop() pattern: string = "";
-  @Prop() align: string = "left";
   @Prop() type: string = "text";
-  @Prop()
-  name!: string;
+  @Prop() name!: string;
   @Prop() autocomplete: "on" | "off" = "off";
   @Prop() disabled: boolean = false;
-  @Prop()
-  inputId!: string;
+  @Prop() inputId!: string;
   @Prop() readonly: boolean = false;
   @Prop() required: boolean = false;
   render() {
+
     return (
       <div class="ui-input">
         <input

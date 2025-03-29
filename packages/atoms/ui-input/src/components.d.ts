@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiInput {
-        "align": string;
         "autocomplete": "on" | "off";
         "disabled": boolean;
         "inputId": string;
@@ -33,7 +32,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiInput {
-        "align"?: string;
         "autocomplete"?: "on" | "off";
         "disabled"?: boolean;
         "inputId": string;

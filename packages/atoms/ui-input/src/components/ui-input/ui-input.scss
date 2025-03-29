@@ -8,9 +8,21 @@
   }
 
   input {
-    padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #4a5568; /* Gris oscuro para un look más serio */
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    background-color: #f7fafc; /* Fondo claro, elegante */
+
+    &:focus {
+      border-color: #2d557d; /* Verde financiero para resaltar el input */
+      box-shadow: 0 0 5px rgba(45, 72, 125, 0.5);
+    }
+
+    &:hover {
+      background-color: #edf2f7; /* Un tono más oscuro de gris claro para sutil feedback */
+    }
   }
 }
