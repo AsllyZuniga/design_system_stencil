@@ -1,0 +1,24 @@
+:host {
+  display: inline-block;
+
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #f9f9f9;
+    color: #1a202c;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #e2e8f0;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
