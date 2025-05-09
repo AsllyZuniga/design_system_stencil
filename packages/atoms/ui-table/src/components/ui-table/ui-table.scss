@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-container ::slotted(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Encabezado */
+.table-container ::slotted(th) {
+  background-color: #333;
+  color: white;
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Celdas */
+.table-container ::slotted(td) {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Bordered */
+.table-container.bordered ::slotted(table) {
+  border: 1px solid #ccc;
+}
+
+/* Striped */
+.table-container.striped ::slotted(tr:nth-child(even)) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+.table-container.hover ::slotted(tr:hover) {
+  background-color: #f1f1f1;
+}
+
+/* Compact */
+.table-container.compact ::slotted(td),
+.table-container.compact ::slotted(th) {
+  padding: 6px 8px;
+}
+
+/* Botones */
+.table-container ::slotted(button) {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.table-container ::slotted(button:first-of-type) {
+  background-color: #007bff; /* Editar */
+}
+
+.table-container ::slotted(button:last-of-type) {
+  background-color: #dc3545; /* Eliminar */
+}
+

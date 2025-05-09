@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UI Table Test</title>
+  </head>
+  <body>
+    <ui-table bordered striped hover>
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Concepto</th>
+            <th>Movimiento</th>
+            <th>Valor</th>
+            <th>Forma de Pago</th>
+            <th>Relación</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3/28/2025</td>
+            <td>Pago internet</td>
+            <td>Pago</td>
+            <td>100000</td>
+            <td>Tarjeta de Débito</td>
+            <td>Básicos</td>
+            <td>
+              <button>Editar</button>
+              <button>Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <script type="module" src="/build/ui-table.esm.js"></script>
+      <script nomodule src="/build/ui-table.js"></script>
+    </ui-table>
+ 
+  </body>
+</html>
