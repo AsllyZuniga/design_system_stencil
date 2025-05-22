@@ -7,10 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiTable {
-        "bordered": boolean;
-        "compact": boolean;
-        "hover": boolean;
-        "striped": boolean;
+        "data": any[];
+        "headers": { field: string; label: string }[];
     }
 }
 declare global {
@@ -26,10 +24,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiTable {
-        "bordered": boolean;
-        "compact": boolean;
-        "hover": boolean;
-        "striped": boolean;
+        "data"?: any[];
+        "headers"?: { field: string; label: string }[];
     }
     interface IntrinsicElements {
         "ui-table": UiTable;

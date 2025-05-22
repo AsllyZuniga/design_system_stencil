@@ -1,41 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>UI Table Test</title>
+    <title>Prueba UI Table</title>
+    <script type="module" src="/build/ui-table.esm.js"></script>
+    <script nomodule src="/build/ui-table.js"></script>
   </head>
   <body>
-    <ui-table bordered striped hover>
-      <table>
-        <thead>
-          <tr>
-            <th>Día</th>
-            <th>Concepto</th>
-            <th>Movimiento</th>
-            <th>Valor</th>
-            <th>Forma de Pago</th>
-            <th>Relación</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>3/28/2025</td>
-            <td>Pago internet</td>
-            <td>Pago</td>
-            <td>100000</td>
-            <td>Tarjeta de Débito</td>
-            <td>Básicos</td>
-            <td>
-              <button>Editar</button>
-              <button>Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <script type="module" src="/build/ui-table.esm.js"></script>
-      <script nomodule src="/build/ui-table.js"></script>
-    </ui-table>
- 
+    <ui-table></ui-table>
+
+    <script>
+      const table = document.querySelector("ui-table");
+
+      table.headers = [
+        { field: "dia", label: "Día" },
+        { field: "concepto", label: "Concepto" },
+        { field: "movimiento", label: "Movimiento" },
+        { field: "valor", label: "Valor" },
+        { field: "formaDePago", label: "Forma de Pago" },
+        { field: "relacion", label: "Relación" },
+        { field: "acciones", label: "Acciones" },
+      ];
+
+      table.data = [
+        { dia: "21/05/2025", concepto: "Pago internet", movimiento: "Pago", valor:"120000", formaDePago: "Efectivo", relacion: "Básicos" },
+        { dia: "", concepto: "", movimiento: "", valor:"", formaDePago: "", relacion: "" },
+        { dia: "", concepto: "", movimiento: "", valor:"", formaDePago: "", relacion: "" },
+        { dia: "", concepto: "", movimiento: "", valor:"", formaDePago: "", relacion: "" },
+
+      ];
+    </script>
   </body>
 </html>

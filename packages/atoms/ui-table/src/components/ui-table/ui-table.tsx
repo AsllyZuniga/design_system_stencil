@@ -2,27 +2,40 @@ import { Component, h, Prop } from "@stencil/core";
 
 @Component({
   tag: "ui-table",
-  styleUrl: "ui-table.scss", // Asegúrate de que la ruta sea correcta
+  styleUrl: "ui-table.scss",
   shadow: true,
 })
 export class UiTable {
-  @Prop() bordered!: boolean;
-  @Prop() striped!: boolean;
-  @Prop() hover!: boolean;
-  @Prop() compact!: boolean;
+  @Prop() headers: { field: string; label: string }[] = [];
+  @Prop() data: any[] = [];
 
   render() {
+    const hasData = this.headers.length > 0 && this.data.length > 0;
+
     return (
-      <div
-        class={{
-          "table-container": true,
-          bordered: this.bordered,
-          striped: this.striped,
-          hover: this.hover,
-          compact: this.compact,
-        }}
-      >
-        <slot />
+      <div class="table-container">
+        {hasData ? (
+          <table class="ui-table">
+            <thead>
+              <tr>
+                {this.headers.map((header) => (
+                  <th key={header.field}>{header.label}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {this.data.map((row) => (
+                <tr>
+                  {this.headers.map((header) => (
+                    <td key={header.field}>{row[header.field]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No hay datos para mostrar.</p>
+        )}
       </div>
     );
   }
