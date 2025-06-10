@@ -7,8 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiPanelModal {
-        "open": boolean;
-        "title": string;
+        "visible": boolean;
     }
 }
 declare global {
@@ -24,8 +23,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiPanelModal {
-        "open"?: boolean;
-        "title": string;
+        "visible"?: boolean;
     }
     interface IntrinsicElements {
         "ui-panel-modal": UiPanelModal;
