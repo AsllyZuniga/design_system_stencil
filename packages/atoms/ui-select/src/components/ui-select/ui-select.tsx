@@ -8,17 +8,9 @@ import { Component, Host, h, Prop, Event, EventEmitter } from "@stencil/core";
 export class UiSelect {
   /** Texto para la etiqueta */
   @Prop() label: string = "Seleccione una opción:";
-
-  /** Opciones JSON: [{ label: 'Texto', value: 'valor' }] */
-  @Prop() options: string = '[]';
-
-  /** Valor seleccionado (input controlado) */
+  @Prop() options: string = "[]";
   @Prop({ mutable: true }) value?: string;
-
-  /** Variante del select (estilización específica) */
   @Prop() variant?: string;
-
-  /** Props estándar del select */
   @Prop() autofocus: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() form?: string;
@@ -27,7 +19,6 @@ export class UiSelect {
   @Prop() required: boolean = false;
   @Prop() size?: number;
 
-  /** Evento de cambio */
   @Event() valueChange!: EventEmitter<string>;
 
   private handleChange = (event: Event) => {
@@ -46,7 +37,7 @@ export class UiSelect {
     }
 
     return (
-      <Host class={`variant-${this.variant || 'default'}`}>
+      <Host class={`variant-${this.variant || "default"}`}>
         <label class="select-label">
           {this.label}
           <select

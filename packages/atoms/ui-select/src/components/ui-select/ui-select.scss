@@ -15,9 +15,10 @@
   padding: 8px 12px;
   font-size: 14px;
 
+
   &:disabled {
     background-color: #f0f0f0;
-    color: #999;
+ 
     cursor: not-allowed;
   }
 }

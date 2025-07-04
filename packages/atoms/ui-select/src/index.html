@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <title>Demo UI Select</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UI Select</title>
   </head>
   <body>
-    <h1>Componente Ui-select</h1>
+    <h1>UI Select</h1>
 
-    <ui-select name="movimiento" required></ui-select>
+    <ui-select
+      label="Seleccione una opción:"
+      required
+      variant="finanzas"
+      options='[
+        { "label": "Seleccione", "value": "" },
+        { "label": "2025", "value": "2025" },
+        { "label": "2024", "value": "2024" },
+        { "label": "2023", "value": "2023" },
+        { "label": "2022", "value": "2022" },
+        { "label": "2021", "value": "2021" },
+      ]'
+    ></ui-select>
 
     <script type="module" src="/build/ui-select.esm.js"></script>
     <script nomodule src="/build/ui-select.js"></script>
+
+    <script>
+      const select = document.querySelector("ui-select");
+      const output = document.getElementById("output");
+
+      select?.addEventListener("valueChange", (event) => {
+        output.textContent = event.detail;
+        console.log("Valor seleccionado:", event.detail);
+      });
+    </script>
   </body>
 </html>
