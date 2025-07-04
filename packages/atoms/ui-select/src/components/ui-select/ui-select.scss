@@ -1,28 +1,23 @@
 :host {
-  display: block;
-  font-family: Arial, sans-serif;
-  margin: 1rem 0;
+  display: inline-block;
+  font-family: sans-serif;
 }
 
-label {
+.select-label {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
-  font-size: 1rem;
+  font-size: 14px;
+  color: var(--ui-select-label-color, #333);
+  gap: 4px;
 }
 
-select {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  max-width: 300px;
-  box-sizing: border-box;
-}
+.select-control {
+  padding: 8px 12px;
+  font-size: 14px;
 
-select:disabled {
-  background-color: #eee;
-  cursor: not-allowed;
+  &:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+  }
 }
