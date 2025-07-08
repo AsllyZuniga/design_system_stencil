@@ -7,51 +7,16 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiSelect {
-        /**
-          * Props estándar del select
-         */
-        "autofocus": boolean;
-        "disabled": boolean;
-        "form"?: string;
-        /**
-          * Texto para la etiqueta
-         */
-        "label": string;
-        "multiple": boolean;
-        "name"?: string;
-        /**
-          * Opciones JSON: [{ label: 'Texto', value: 'valor' }]
-         */
-        "options": string;
-        "required": boolean;
-        "size"?: number;
-        /**
-          * Valor seleccionado (input controlado)
-         */
-        "value"?: string;
-        /**
-          * Variante del select (estilización específica)
-         */
-        "variant"?: string;
+        "label": string | undefined;
+        "options": {
+    id: string;
+    value: string | number;
+    label: string;
+  }[];
     }
-}
-export interface UiSelectCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUiSelectElement;
 }
 declare global {
-    interface HTMLUiSelectElementEventMap {
-        "valueChange": string;
-    }
     interface HTMLUiSelectElement extends Components.UiSelect, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUiSelectElementEventMap>(type: K, listener: (this: HTMLUiSelectElement, ev: UiSelectCustomEvent<HTMLUiSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUiSelectElementEventMap>(type: K, listener: (this: HTMLUiSelectElement, ev: UiSelectCustomEvent<HTMLUiSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUiSelectElement: {
         prototype: HTMLUiSelectElement;
@@ -63,36 +28,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiSelect {
-        /**
-          * Props estándar del select
-         */
-        "autofocus"?: boolean;
-        "disabled"?: boolean;
-        "form"?: string;
-        /**
-          * Texto para la etiqueta
-         */
-        "label"?: string;
-        "multiple"?: boolean;
-        "name"?: string;
-        /**
-          * Evento de cambio
-         */
-        "onValueChange"?: (event: UiSelectCustomEvent<string>) => void;
-        /**
-          * Opciones JSON: [{ label: 'Texto', value: 'valor' }]
-         */
-        "options"?: string;
-        "required"?: boolean;
-        "size"?: number;
-        /**
-          * Valor seleccionado (input controlado)
-         */
-        "value"?: string;
-        /**
-          * Variante del select (estilización específica)
-         */
-        "variant"?: string;
+        "label"?: string | undefined;
+        "options"?: {
+    id: string;
+    value: string | number;
+    label: string;
+  }[];
     }
     interface IntrinsicElements {
         "ui-select": UiSelect;

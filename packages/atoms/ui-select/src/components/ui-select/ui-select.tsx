@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from "@stencil/core";
+import { Component, Host, h, Prop } from "@stencil/core";
 
 @Component({
   tag: "ui-select",
@@ -6,56 +6,21 @@ import { Component, Host, h, Prop, Event, EventEmitter } from "@stencil/core";
   shadow: true,
 })
 export class UiSelect {
-  /** Texto para la etiqueta */
-  @Prop() label: string = "Seleccione una opción:";
-  @Prop() options: string = "[]";
-  @Prop({ mutable: true }) value?: string;
-  @Prop() variant?: string;
-  @Prop() autofocus: boolean = false;
-  @Prop() disabled: boolean = false;
-  @Prop() form?: string;
-  @Prop() multiple: boolean = false;
-  @Prop() name?: string;
-  @Prop() required: boolean = false;
-  @Prop() size?: number;
-
-  @Event() valueChange!: EventEmitter<string>;
-
-  private handleChange = (event: Event) => {
-    const target = event.target as HTMLSelectElement;
-    this.value = target.value;
-    this.valueChange.emit(this.value);
-  };
+  @Prop() label: string | undefined;
+  @Prop() options: {
+    id: string;
+    value: string | number;
+    label: string;
+  }[] = [];
 
   render() {
-    let parsedOptions: { label: string; value: string }[] = [];
-
-    try {
-      parsedOptions = JSON.parse(this.options);
-    } catch (err) {
-      console.warn("El formato de 'options' no es un JSON válido.");
-    }
-
     return (
-      <Host class={`variant-${this.variant || "default"}`}>
+      <Host>
         <label class="select-label">
           {this.label}
-          <select
-            class="select-control"
-            {...({
-              autofocus: this.autofocus,
-              disabled: this.disabled,
-              form: this.form,
-              multiple: this.multiple,
-              name: this.name,
-              required: this.required,
-              size: this.size,
-              value: this.value,
-              onInput: this.handleChange,
-            } as any)}
-          >
-            {parsedOptions.map((opt) => (
-              <option value={opt.value}>{opt.label}</option>
+          <select class="select-control">
+            {this.options.map((option) => (
+              <option value={option.value}>{option.label}</option>
             ))}
           </select>
         </label>
