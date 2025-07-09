@@ -1,8 +1,8 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h } from "@stencil/core";
 
 @Component({
-  tag: 'ui-card',
-  styleUrl: 'ui-card.scss',
+  tag: "ui-card",
+  styleUrl: "ui-card.scss",
   shadow: true,
 })
 export class UiCard {
@@ -15,7 +15,9 @@ export class UiCard {
   render() {
     const CardContent = (
       <div class="card">
-        {this.image && <img src={this.image} alt="Card image" class="card-image" />}
+        {this.image && (
+          <img src={this.image} alt="Card image" class="card-image" />
+        )}
         <div class="card-header">
           {this.title && <h2 class="card-title">{this.title}</h2>}
           {this.subtitle && <p class="card-subtitle">{this.subtitle}</p>}
@@ -30,7 +32,9 @@ export class UiCard {
     );
 
     return this.clickable && this.href ? (
-      <a href={this.href} class="card-link">{CardContent}</a>
+      <a href={this.href} class="card-link">
+        {CardContent}
+      </a>
     ) : (
       CardContent
     );

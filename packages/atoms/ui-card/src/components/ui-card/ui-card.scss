@@ -1,6 +1,6 @@
 :host {
   display: block;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .card {
@@ -21,31 +21,11 @@
   display: block;
 }
 
-.card-header {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
 .card-title {
   font-size: 1.25rem;
   margin: 0;
 }
 
-.card-subtitle {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.25rem;
-}
-
 .card-body {
-  padding: 1rem;
+  padding: 14px;
 }
-
-.card-footer {
-  padding: 1rem;
-  border-top: 1px solid #eee;
-  text-align: right;
-}
-
-
-
