@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from "@stencil/core";
+import { Component, Prop, h, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: "ui-input",
@@ -8,29 +8,28 @@ import { Component, Host, Prop, h } from "@stencil/core";
 export class UiInput {
   @Prop() placeholder: string = "";
   @Prop() value: string = "";
-  @Prop() pattern: string = "";
   @Prop() type: string = "text";
   @Prop() name!: string;
-  @Prop() autocomplete: "on" | "off" = "off";
-  @Prop() disabled: boolean = false;
   @Prop() inputId!: string;
-  @Prop() readonly: boolean = false;
-  @Prop() required: boolean = false;
-  render() {
 
+  // Evento: emitimos SOLO el evento nativo
+  @Event({ bubbles: true, composed: true })
+  valueChange!: EventEmitter<any>;
+
+  private handleInput = (evt: Event) => {
+    this.valueChange.emit(evt.target);
+  };
+
+  render() {
     return (
       <div class="ui-input">
         <input
-          type={this.type}
-          placeholder={this.placeholder}
-          value={this.value}
-          pattern={this.pattern}
-          name={this.name}
-          autocomplete={this.autocomplete}
-          disabled={this.disabled}
-          readonly={this.readonly}
-          required={this.required}
           id={this.inputId}
+          name={this.name}
+          type={this.type}
+          value={this.value}
+          placeholder={this.placeholder}
+          onChange={this.handleInput}
         />
       </div>
     );
