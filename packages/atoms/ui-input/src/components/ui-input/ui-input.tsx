@@ -12,7 +12,6 @@ export class UiInput {
   @Prop() name!: string;
   @Prop() inputId!: string;
 
-  // Evento: emitimos SOLO el evento nativo
   @Event({ bubbles: true, composed: true })
   valueChange!: EventEmitter<any>;
 
