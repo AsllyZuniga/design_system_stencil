@@ -5,15 +5,31 @@
     font-size: 14px;
     padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
-    background-color: black;
+    
+  background-color: black;
     color: #f9f9f9;
+    //font-family: 'OpenDyslexic', Consolas, 'Courier New', monospace
+;
   }
 
   button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
+   /* ESTILO EXTRA PARA PROYECTO REACT */
+  :host(.react-transaction) button {
+    background-color: #d3d3d3;
+    color: #000;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 500;
+  }
+
+  :host(.react-transaction) button:hover {
+    background-color: #c0c0c0;
+  }
+
 }
