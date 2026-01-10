@@ -17,7 +17,7 @@ export class UiInput {
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() required: boolean = false;
-  
+
   @Event({ bubbles: true, composed: true })
   valueChange!: EventEmitter<any>;
 
