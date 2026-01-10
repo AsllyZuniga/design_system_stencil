@@ -7,11 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiInput {
-        "autocomplete": "on" | "off";
         "disabled": boolean;
+        "error"?: string;
+        "hint"?: string;
         "inputId": string;
+        "label"?: string;
         "name": string;
-        "pattern": string;
         "placeholder": string;
         "readonly": boolean;
         "required": boolean;
@@ -19,8 +20,23 @@ export namespace Components {
         "value": string;
     }
 }
+export interface UiInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUiInputElement;
+}
 declare global {
+    interface HTMLUiInputElementEventMap {
+        "valueChange": any;
+    }
     interface HTMLUiInputElement extends Components.UiInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUiInputElementEventMap>(type: K, listener: (this: HTMLUiInputElement, ev: UiInputCustomEvent<HTMLUiInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUiInputElementEventMap>(type: K, listener: (this: HTMLUiInputElement, ev: UiInputCustomEvent<HTMLUiInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUiInputElement: {
         prototype: HTMLUiInputElement;
@@ -32,11 +48,13 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiInput {
-        "autocomplete"?: "on" | "off";
         "disabled"?: boolean;
+        "error"?: string;
+        "hint"?: string;
         "inputId": string;
+        "label"?: string;
         "name": string;
-        "pattern"?: string;
+        "onValueChange"?: (event: UiInputCustomEvent<any>) => void;
         "placeholder"?: string;
         "readonly"?: boolean;
         "required"?: boolean;
