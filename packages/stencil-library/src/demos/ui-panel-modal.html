@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prueba Modal</title>
+    <script type="module" src="/build/ui-panel-modal.esm.js"></script>
+    <script nomodule src="/build/ui-panel-modal.js"></script>
+  </head>
+  <body>
+    <ui-panel-modal visible="true">
+      <div class="modal-header">
+        <h2>Agregar Transacción</h2>
+      </div>
+
+      <div class="modal-body">
+        <label>Concepto</label>
+        <input type="text" />
+
+        <label>Movimiento</label>
+        <select>
+          <option>Seleccione</option>
+        </select>
+
+        <label>Valor</label>
+        <input type="number" value="0" />
+
+        <label>Método de Pago</label>
+        <select>
+          <option>Seleccione</option>
+        </select>
+
+        <label>Relación</label>
+        <select>
+          <option>Seleccione</option>
+        </select>
+
+        <label>Fecha</label>
+        <input type="datetime-local" value="2025-03-28T14:14" />
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel">Cancelar</button>
+        <button class="save">Guardar</button>
+      </div>
+    </ui-panel-modal>
+  </body>
+</html>

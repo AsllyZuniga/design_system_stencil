@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prueba UI Table</title>
+    <script type="module" src="/build/ui-table.esm.js"></script>
+    <script nomodule src="/build/ui-table.js"></script>
+  </head>
+  <body>
+    <ui-table id="tbl"></ui-table>
+<script type="module">
+  const tbl = document.querySelector('#tbl');
+
+  tbl.headers = [
+    { field: 'entryDate', label: 'Fecha' },
+    { field: 'description', label: 'Descripción' },
+    { field: 'actions', label: 'Acciones' },
+  ];
+
+  tbl.data = [
+    { id: 1, entryDate: '2025-05-01', description: 'Pago #1' },
+    { id: 2, entryDate: '2025-05-02', description: 'Pago #2' },
+  ];
+
+  tbl.templates = {
+    entryDate: (v) => `<strong>${new Date(v).toLocaleDateString()}</strong>`,
+    actions: (_, row) => {
+      const container = document.createElement('div');
+
+      const editBtn = document.createElement('button');
+      editBtn.textContent = 'Editar';
+      editBtn.addEventListener('click', () => console.log('Editar', row));
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Eliminar';
+      deleteBtn.classList.add('delete');
+      deleteBtn.addEventListener('click', () => console.log('Eliminar', row));
+
+      container.append(editBtn, deleteBtn);
+      return container;
+    },
+  };
+</script>

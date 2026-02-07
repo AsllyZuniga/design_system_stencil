@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UI Select – Estados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="module" src="/build/ui-select.esm.js"></script>
+    <script nomodule src="/build/ui-select.js"></script>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 40px;
+      }
+      .demo {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .block {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>UI Select – probando todos</h1>
+
+    <div class="demo">
+      <!-- DEFAULT -->
+      <div class="block">
+        <strong>Default</strong>
+        <ui-select label="Año"></ui-select>
+      </div>
+
+      <!-- FILLED -->
+      <div class="block">
+        <strong>Filled</strong>
+        <ui-select label="Año" value="2024"></ui-select>
+      </div>
+
+      <!-- ERROR -->
+      <div class="block">
+        <strong>Error</strong>
+        <ui-select label="Año" error></ui-select>
+      </div>
+
+      <!-- DISABLED -->
+      <div class="block">
+        <strong>Disabled</strong>
+        <ui-select label="Año" disabled></ui-select>
+      </div>
+
+      <!-- ERROR + FILLED -->
+      <div class="block">
+        <strong>Error + Filled</strong>
+        <ui-select label="Año" error value="2023"></ui-select>
+      </div>
+    </div>
+
+    <script>
+      const options = [
+        { id: "1", value: "2025", label: "2025" },
+        { id: "2", value: "2024", label: "2024" },
+        { id: "3", value: "2023", label: "2023" },
+        { id: "4", value: "2022", label: "2022" },
+        { id: "5", value: "2021", label: "2021" },
+      ];
+
+      document.querySelectorAll("ui-select").forEach((select) => {
+        select.options = options;
+      });
+    </script>
+  </body>
+</html>

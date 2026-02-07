@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI Input – Form Associated</title>
+
+  <link rel="stylesheet" href="/build/stencil-library.css">
+  <script type="module" src="/build/stencil-library.esm.js"></script>
+  <script nomodule src="/build/stencil-library.js"></script>
+</head>
+
+<body>
+  <h1>UI Input</h1>
+
+  <form id="test-form">
+    <ui-input
+      label="Correo"
+      name="email"
+      inputId="email"
+      type="email"
+      required
+      hint="Ingresa tu correo electrónico"
+    ></ui-input>
+
+    <br /><br />
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+</body>
+</html>
