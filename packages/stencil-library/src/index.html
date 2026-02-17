@@ -3,18 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <title>Stencil UI Demos</title>
-    
+
     <link rel="stylesheet" href="/build/stencil-library.css" />
 
     <script type="module" src="/build/stencil-library.esm.js"></script>
     <script nomodule src="/build/stencil-library.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Roboto, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 40px;
+        color: #2c3e50;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 600;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      li {
+        margin-bottom: 12px;
+      }
+
+      a {
+        display: block;
+        padding: 12px 18px;
+        background: #ffffff;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #34495e;
+        font-weight: 500;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease-in-out;
+      }
+
+      a:hover {
+        background-color: #2d6cdf;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
 
   <body>
     <h1>UI Components – Demos</h1>
 
     <ul>
-      <li><a href="./demos/ui-badge.htmlS">UI Badge</a></li>
+      <li><a href="./demos/ui-badge.html">UI Badge</a></li>
       <li><a href="./demos/ui-button.html">UI Button</a></li>
       <li><a href="./demos/ui-card.html">UI Card</a></li>
       <li><a href="./demos/ui-input.html">UI Input</a></li>
