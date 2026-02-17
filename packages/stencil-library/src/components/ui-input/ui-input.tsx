@@ -9,7 +9,7 @@ import { Component, Prop, h, Event, EventEmitter, Method, State, AttachInternals
 export class UiInput {
   @Prop() label?: string;
   @Prop() placeholder: string = '';
-  @Prop() value: string = '';
+  @Prop({ mutable: true, reflect: true }) value: string = '';
   @Prop() type: string = 'text';
   @Prop() name!: string;
   @Prop() inputId!: string;
@@ -19,29 +19,34 @@ export class UiInput {
   @Prop() readonly: boolean = false;
   @Prop() required: boolean = false;
 
-  @AttachInternals()
-  internals: ElementInternals;
+  @AttachInternals() internals: ElementInternals;
 
   @State() hasError: boolean = false;
 
   @Event({ bubbles: true, composed: true })
   valueChange!: EventEmitter<string>;
 
+  componentWillLoad() {
+    this.internals.setFormValue(this.value);
+  }
+
   private handleInput = (evt: Event) => {
     const target = evt.target as HTMLInputElement;
     this.value = target.value;
 
-    this.internals.setFormValue(this.value); // 👈 CLAVE
+    this.internals.setFormValue(this.value);
     this.valueChange.emit(this.value);
 
     if (this.hasError && this.value.trim()) {
       this.hasError = false;
+      this.internals.setValidity({});
     }
   };
 
   private handleBlur = () => {
     if (this.required && !this.value.trim()) {
       this.hasError = true;
+      this.internals.setValidity({ valueMissing: true }, 'Campo obligatorio');
     }
   };
 
@@ -49,9 +54,7 @@ export class UiInput {
   async validate(): Promise<boolean> {
     if (this.required && !this.value.trim()) {
       this.hasError = true;
-
       this.internals.setValidity({ valueMissing: true }, 'Campo obligatorio');
-
       return false;
     }
 
@@ -105,12 +108,17 @@ export class UiInput {
           value={this.value}
           placeholder={this.placeholder}
           disabled={this.disabled}
-          readonly={this.readonly}
+          readOnly={this.readonly}
+          required={this.required}
           onInput={this.handleInput}
           onBlur={this.handleBlur}
         />
 
-        {this.hasError ? <span class="error-message">Campo obligatorio</span> : this.hint && <span class="hint-message">{this.hint}</span>}
+        {this.hasError ? (
+          <span class="error-message">Campo obligatorio</span>
+        ) : (
+          this.hint && <span class="hint-message">{this.hint}</span>
+        )}
       </div>
     );
   }
