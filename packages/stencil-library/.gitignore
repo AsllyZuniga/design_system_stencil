@@ -1,6 +1,7 @@
 dist/
 www/
 loader/
+dist-custom-elements/
 
 *~
 *.sw[mnpcod]

@@ -50,9 +50,8 @@ export namespace Components {
         "hint"?: string;
         "inputId": string;
         "label"?: string;
-        "name": string;
         /**
-          * @default ''
+          * @default ""
          */
         "placeholder": string;
         /**
@@ -64,14 +63,10 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * @default 'text'
+          * @default "text"
          */
         "type": string;
         "validate": () => Promise<boolean>;
-        /**
-          * @default ''
-         */
-        "value": string;
     }
     interface UiPanelModal {
         /**
@@ -159,7 +154,7 @@ declare global {
         new (): HTMLUiCardElement;
     };
     interface HTMLUiInputElementEventMap {
-        "valueChange": string;
+        "inputChange": string;
     }
     interface HTMLUiInputElement extends Components.UiInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUiInputElementEventMap>(type: K, listener: (this: HTMLUiInputElement, ev: UiInputCustomEvent<HTMLUiInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -281,10 +276,13 @@ declare namespace LocalJSX {
         "hint"?: string;
         "inputId": string;
         "label"?: string;
-        "name": string;
-        "onValueChange"?: (event: UiInputCustomEvent<string>) => void;
         /**
-          * @default ''
+          * The name of the element, used when submitting an HTML form.
+         */
+        "name"?: string;
+        "onInputChange"?: (event: UiInputCustomEvent<string>) => void;
+        /**
+          * @default ""
          */
         "placeholder"?: string;
         /**
@@ -296,13 +294,9 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * @default 'text'
+          * @default "text"
          */
         "type"?: string;
-        /**
-          * @default ''
-         */
-        "value"?: string;
     }
     interface UiPanelModal {
         /**
@@ -395,9 +389,7 @@ declare namespace LocalJSX {
     interface UiInputAttributes {
         "label": string;
         "placeholder": string;
-        "value": string;
         "type": string;
-        "name": string;
         "inputId": string;
         "hint": string;
         "disabled": boolean;
@@ -427,7 +419,7 @@ declare namespace LocalJSX {
         "ui-badge": Omit<UiBadge, keyof UiBadgeAttributes> & { [K in keyof UiBadge & keyof UiBadgeAttributes]?: UiBadge[K] } & { [K in keyof UiBadge & keyof UiBadgeAttributes as `attr:${K}`]?: UiBadgeAttributes[K] } & { [K in keyof UiBadge & keyof UiBadgeAttributes as `prop:${K}`]?: UiBadge[K] } & OneOf<"color", UiBadge["color"]>;
         "ui-button": Omit<UiButton, keyof UiButtonAttributes> & { [K in keyof UiButton & keyof UiButtonAttributes]?: UiButton[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `attr:${K}`]?: UiButtonAttributes[K] } & { [K in keyof UiButton & keyof UiButtonAttributes as `prop:${K}`]?: UiButton[K] };
         "ui-card": Omit<UiCard, keyof UiCardAttributes> & { [K in keyof UiCard & keyof UiCardAttributes]?: UiCard[K] } & { [K in keyof UiCard & keyof UiCardAttributes as `attr:${K}`]?: UiCardAttributes[K] } & { [K in keyof UiCard & keyof UiCardAttributes as `prop:${K}`]?: UiCard[K] };
-        "ui-input": Omit<UiInput, keyof UiInputAttributes> & { [K in keyof UiInput & keyof UiInputAttributes]?: UiInput[K] } & { [K in keyof UiInput & keyof UiInputAttributes as `attr:${K}`]?: UiInputAttributes[K] } & { [K in keyof UiInput & keyof UiInputAttributes as `prop:${K}`]?: UiInput[K] } & OneOf<"name", UiInput["name"]> & OneOf<"inputId", UiInput["inputId"]>;
+        "ui-input": Omit<UiInput, keyof UiInputAttributes> & { [K in keyof UiInput & keyof UiInputAttributes]?: UiInput[K] } & { [K in keyof UiInput & keyof UiInputAttributes as `attr:${K}`]?: UiInputAttributes[K] } & { [K in keyof UiInput & keyof UiInputAttributes as `prop:${K}`]?: UiInput[K] } & OneOf<"inputId", UiInput["inputId"]>;
         "ui-panel-modal": Omit<UiPanelModal, keyof UiPanelModalAttributes> & { [K in keyof UiPanelModal & keyof UiPanelModalAttributes]?: UiPanelModal[K] } & { [K in keyof UiPanelModal & keyof UiPanelModalAttributes as `attr:${K}`]?: UiPanelModalAttributes[K] } & { [K in keyof UiPanelModal & keyof UiPanelModalAttributes as `prop:${K}`]?: UiPanelModal[K] };
         "ui-select": Omit<UiSelect, keyof UiSelectAttributes> & { [K in keyof UiSelect & keyof UiSelectAttributes]?: UiSelect[K] } & { [K in keyof UiSelect & keyof UiSelectAttributes as `attr:${K}`]?: UiSelectAttributes[K] } & { [K in keyof UiSelect & keyof UiSelectAttributes as `prop:${K}`]?: UiSelect[K] };
         "ui-table": UiTable;

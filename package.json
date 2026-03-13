@@ -1,14 +1,10 @@
 {
-  "name": "root",
+  "name": "design-system",
   "private": true,
   "workspaces": [
-    "packages/atoms/*",
-    "packages/molecules/*"
+    "packages/stencil-library"
   ],
   "devDependencies": {
-    "@stencil/core": "^4.25.0",
-    "@stencil/sass": "^3.0.12",
-    "@types/jest": "^29.5.14",
     "lerna": "^8.1.9"
   }
 }

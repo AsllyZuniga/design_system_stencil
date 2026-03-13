@@ -1,4 +1,13 @@
-import {Component, Prop, h, Event, EventEmitter, Method, State, AttachInternals} from "@stencil/core";
+import {
+  Component,
+  Prop,
+  h,
+  Event,
+  EventEmitter,
+  Method,
+  State,
+  AttachInternals,
+} from "@stencil/core";
 
 @Component({
   tag: "ui-input",
@@ -54,6 +63,9 @@ export class UiInput {
 
   @Method()
   async validate(): Promise<boolean> {
+    return this.validateInput();
+  }
+  validateInput() {
     if (this.required && !this.value.trim()) {
       this.hasError = true;
       this.internals.setValidity({ valueMissing: true }, "Campo obligatorio");
@@ -66,6 +78,7 @@ export class UiInput {
 
   formAssociatedCallback(form: HTMLFormElement | null) {
     console.log("ui-input asociado al form:", form);
+    form.addEventListener("submit", () => this.validateInput());
   }
 
   formDisabledCallback(disabled: boolean) {
@@ -84,6 +97,9 @@ export class UiInput {
   }
 
   render() {
+    const hint = this.hasError ? "Campo obligatorio" : this.hint;
+
+
     return (
       <div
         class={{
@@ -107,12 +123,9 @@ export class UiInput {
           onInput={this.handleInput}
           onBlur={this.handleBlur}
         />
+        <small class="hint-message">{hint}</small>
 
-        {this.hasError ? (
-          <small class="error-message">Campo obligatorio</small>
-        ) : (
-          this.hint && <small class="hint-message">{this.hint}</small>
-        )}
+        
       </div>
     );
   }

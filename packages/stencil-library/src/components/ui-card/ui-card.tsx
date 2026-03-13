@@ -6,7 +6,7 @@ import { Component, Prop, h } from "@stencil/core";
   shadow: true,
 })
 export class UiCard {
-  @Prop() title?: string;
+  @Prop() cardTitle?: string;
   @Prop() subtitle?: string;
   @Prop() image?: string;
   @Prop() clickable?: boolean = false;
@@ -19,7 +19,7 @@ export class UiCard {
           <img src={this.image} alt="Card image" class="card-image" />
         )}
         <div class="card-header">
-          {this.title && <h2 class="card-title">{this.title}</h2>}
+          {this.cardTitle && <h2 class="card-title">{this.cardTitle}</h2>}
           {this.subtitle && <p class="card-subtitle">{this.subtitle}</p>}
         </div>
         <div class="card-body">

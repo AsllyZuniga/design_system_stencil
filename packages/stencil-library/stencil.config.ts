@@ -27,10 +27,6 @@ export const config: Config = {
       serviceWorker: null,
       copy: [
         {
-          src: "../../../node_modules/@fortawesome/fontawesome-free/webfonts",
-          dest: "webfonts",
-        },
-        {
           src: "demos",
           dest: "demos",
         },
