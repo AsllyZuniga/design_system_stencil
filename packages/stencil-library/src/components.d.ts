@@ -17,7 +17,10 @@ export namespace Components {
         "text"?: string;
     }
     interface UiButton {
-        "autofocus"?: boolean;
+        /**
+          * @default false
+         */
+        "autofocus": boolean;
         "disabled"?: boolean;
         "form"?: string;
         "formaction"?: string;
@@ -33,6 +36,7 @@ export namespace Components {
         "value"?: string;
     }
     interface UiCard {
+        "cardTitle"?: string;
         /**
           * @default false
          */
@@ -40,7 +44,6 @@ export namespace Components {
         "href"?: string;
         "image"?: string;
         "subtitle"?: string;
-        "title"?: string;
     }
     interface UiInput {
         /**
@@ -67,6 +70,10 @@ export namespace Components {
          */
         "type": string;
         "validate": () => Promise<boolean>;
+        /**
+          * @default ""
+         */
+        "value": string;
     }
     interface UiPanelModal {
         /**
@@ -93,6 +100,14 @@ export namespace Components {
     value: string | number;
     label: string;
   }[];
+        /**
+          * @default "Select"
+         */
+        "placeholder": string;
+        /**
+          * @default false
+         */
+        "required": boolean;
         "value"?: string | number;
     }
     interface UiTable {
@@ -239,6 +254,9 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface UiButton {
+        /**
+          * @default false
+         */
         "autofocus"?: boolean;
         "disabled"?: boolean;
         "form"?: string;
@@ -255,6 +273,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface UiCard {
+        "cardTitle"?: string;
         /**
           * @default false
          */
@@ -262,7 +281,6 @@ declare namespace LocalJSX {
         "href"?: string;
         "image"?: string;
         "subtitle"?: string;
-        "title"?: string;
     }
     interface UiInput {
         /**
@@ -297,6 +315,10 @@ declare namespace LocalJSX {
           * @default "text"
          */
         "type"?: string;
+        /**
+          * @default ""
+         */
+        "value"?: string;
     }
     interface UiPanelModal {
         /**
@@ -313,6 +335,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "error"?: boolean;
+        /**
+          * The `id` of a `<form>` element to associate this element with.
+         */
+        "form"?: string;
         "label"?: string;
         "name"?: string;
         "onValueChange"?: (event: UiSelectCustomEvent<{
@@ -328,6 +354,14 @@ declare namespace LocalJSX {
     value: string | number;
     label: string;
   }[];
+        /**
+          * @default "Select"
+         */
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         "value"?: string | number;
     }
     interface UiTable {
@@ -380,7 +414,7 @@ declare namespace LocalJSX {
         "value": string;
     }
     interface UiCardAttributes {
-        "title": string;
+        "cardTitle": string;
         "subtitle": string;
         "image": string;
         "clickable": boolean;
@@ -395,6 +429,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "readonly": boolean;
         "required": boolean;
+        "value": string;
     }
     interface UiPanelModalAttributes {
         "visible": boolean;
@@ -402,9 +437,11 @@ declare namespace LocalJSX {
     interface UiSelectAttributes {
         "name": string;
         "label": string;
+        "placeholder": string;
         "value": string;
         "disabled": boolean;
         "error": boolean;
+        "required": boolean;
     }
     interface UiTagAttributes {
         "text": string;
