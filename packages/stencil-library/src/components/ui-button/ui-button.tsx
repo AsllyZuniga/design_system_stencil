@@ -6,7 +6,7 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class UiButton {
-  @Prop() autofocus?: boolean;
+  @Prop() autofocus: boolean = false;
   @Prop() disabled?: boolean;
   @Prop() form?: string;
   @Prop() formaction?: string;
