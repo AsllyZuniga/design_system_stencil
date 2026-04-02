@@ -6,6 +6,7 @@ import {
   EventEmitter,
   Method,
   State,
+  Watch,
   AttachInternals,
 } from "@stencil/core";
 
@@ -21,11 +22,11 @@ export class UiInput {
   @Prop() type: string = "text";
   @Prop() inputId!: string;
   @Prop() hint?: string;
-  @Prop() disabled: boolean = false;
+  @Prop({ mutable: true }) disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() required: boolean = false;
+  @Prop({ mutable: true }) value: string = "";
 
-  @State() value: string = "";
   @State() hasError: boolean = false;
 
   @AttachInternals() internals: ElementInternals;
@@ -37,6 +38,15 @@ export class UiInput {
     this.internals.setFormValue(this.value);
   }
 
+  @Watch("value")
+  handleValueChange(nextValue: string) {
+    this.internals.setFormValue(nextValue ?? "");
+
+    if (this.hasError && nextValue.trim()) {
+      this.clearError();
+    }
+  }
+
   private clearError() {
     this.hasError = false;
     this.internals.setValidity({});
@@ -46,12 +56,7 @@ export class UiInput {
     const target = evt.target as HTMLInputElement;
     this.value = target.value;
 
-    this.internals.setFormValue(this.value);
     this.inputChange.emit(this.value);
-
-    if (this.hasError && this.value.trim()) {
-      this.clearError();
-    }
   };
 
   private handleBlur = () => {
@@ -77,7 +82,10 @@ export class UiInput {
   }
 
   formAssociatedCallback(form: HTMLFormElement | null) {
-    console.log("ui-input asociado al form:", form);
+    if (!form) {
+      return;
+    }
+
     form.addEventListener("submit", () => this.validateInput());
   }
 
@@ -98,7 +106,6 @@ export class UiInput {
 
   render() {
     const hint = this.hasError ? "Campo obligatorio" : this.hint;
-
 
     return (
       <div
@@ -124,8 +131,6 @@ export class UiInput {
           onBlur={this.handleBlur}
         />
         <small class="hint-message">{hint}</small>
-
-        
       </div>
     );
   }
