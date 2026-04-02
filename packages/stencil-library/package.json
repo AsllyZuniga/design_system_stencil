@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist-custom-elements/index.js",
   "module": "dist-custom-elements/index.js",
-  "types": "dist/types/components.d.ts",
+  "types": "dist/types.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/components.d.ts",
@@ -16,9 +16,12 @@
       "types": "./dist/types/components.d.ts",
       "import": "./dist-custom-elements/index.js"
     },
-    "./dist-custom-elements/*": {
+    "./dist-custom-elements/*.js": {
       "types": "./dist-custom-elements/*.d.ts",
       "import": "./dist-custom-elements/*.js"
+    },
+    "./dist/types/components": {
+      "types": "./dist/types/components.d.ts"
     }
   },
   "files": [
