@@ -2,7 +2,8 @@
   "name": "design-system",
   "private": true,
   "workspaces": [
-    "packages/stencil-library"
+    "packages/stencil-library",
+    "packages/react-library"
   ],
   "devDependencies": {
     "lerna": "^8.1.9"
