@@ -1,18 +1,22 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true,
-        "jsx": "react",
-        "jsxFactory": "h",
-        "jsxFragmentFactory": "Fragment",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "skipLibCheck": true,
-        "useDefineForClassFields": false,
-        "types": ["jest"]
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "**/*.spect.ts", "**/__tests__/**"]
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    "skipLibCheck": true,
+    "useDefineForClassFields": false,
+    "types": ["jest"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/__tests__/**"]
 }
