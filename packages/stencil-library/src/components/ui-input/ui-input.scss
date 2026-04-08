@@ -10,6 +10,7 @@
   --ui-input-border-radius: 5px;
   --ui-input-font-size: 14px;
   --ui-input-line-height: 20px;
+  --ui-input-text-align: left;
   --ui-input-padding-y: 10px;
   --ui-input-padding-x: 10px;
   --ui-input-bg: #f7fafc;
@@ -52,6 +53,7 @@
     border-radius: var(--ui-input-border-radius);
     font-size: var(--ui-input-font-size);
     line-height: var(--ui-input-line-height);
+    text-align: var(--ui-input-text-align);
     padding: var(--ui-input-padding-y) var(--ui-input-padding-x);
     outline: none;
     width: 100%;
