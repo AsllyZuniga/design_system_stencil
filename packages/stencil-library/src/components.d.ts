@@ -416,14 +416,14 @@ declare namespace LocalJSX {
         "href": string;
     }
     interface UiInputAttributes {
+        "disabled": boolean;
+        "hint": string;
+        "inputId": string;
         "label": string;
         "placeholder": string;
-        "type": string;
-        "inputId": string;
-        "hint": string;
-        "disabled": boolean;
         "readonly": boolean;
         "required": boolean;
+        "type": string;
         "value": string;
     }
     interface UiPanelModalAttributes {
