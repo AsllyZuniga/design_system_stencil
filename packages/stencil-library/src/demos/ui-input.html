@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prueba ui-input</title>
+
+    <link rel="stylesheet" href="/build/stencil-library.css" />
+    <script type="module" src="/build/stencil-library.esm.js"></script>
+    <script nomodule src="/build/stencil-library.js"></script>
+
+    <style>
+      s body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #eef2ff, #f8fafc);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card {
+        background: white;
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 380px;
+      }
+
+      h1 {
+        margin: 0 0 20px;
+        font-size: 1.3rem;
+        color: #111827;
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button[type="submit"] {
+        background: #2563eb;
+        color: white;
+      }
+
+      button[type="submit"]:hover {
+        background: #1d4ed8;
+      }
+
+      button[type="reset"] {
+        background: #e5e7eb;
+        color: #111827;
+      }
+
+      button[type="reset"]:hover {
+        background: #d1d5db;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Formulario de prueba</h1>
+
+      <form>
+        <ui-input
+          label="Nombre"
+          name="nombre"
+          input-id="nombre"
+          value="Aslly Zuñiga"
+          required
+        ></ui-input>
+        <ui-select label="Año"></ui-select>
+
+        <div class="buttons">
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const options = [
+        { id: "1", value: "2025", label: "2025" },
+        { id: "2", value: "2024", label: "2024" },
+        { id: "3", value: "2023", label: "2023" },
+        { id: "4", value: "2022", label: "2022" },
+        { id: "5", value: "2021", label: "2021" },
+      ];
+
+      document.querySelectorAll("ui-select").forEach((select) => {
+        select.options = options;
+      });
+    </script>
+  </body>
+</html>

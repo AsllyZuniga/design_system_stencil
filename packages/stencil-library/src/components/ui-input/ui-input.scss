@@ -1,0 +1,107 @@
+:host {
+  display: block;
+  --ui-input-gap: 4px;
+  --ui-input-label-size: 13px;
+  --ui-input-label-weight: 500;
+  --ui-input-label-color: #2d3748;
+  --ui-input-required-color: #e53e3e;
+  --ui-input-required-size: 12px;
+  --ui-input-border-color: #4a5568;
+  --ui-input-border-radius: 5px;
+  --ui-input-font-size: 14px;
+  --ui-input-line-height: 20px;
+  --ui-input-padding-y: 10px;
+  --ui-input-padding-x: 10px;
+  --ui-input-bg: #f7fafc;
+  --ui-input-bg-hover: #edf2f7;
+  --ui-input-bg-filled: #ffffff;
+  --ui-input-bg-disabled: #e2e8f0;
+  --ui-input-bg-readonly: #edf2f7;
+  --ui-input-focus-border-color: #000000;
+  --ui-input-hint-size: 12px;
+  --ui-input-hint-color: #718096;
+  --ui-input-error-color: #e53e3e;
+  --ui-input-error-bg: #fff5f5;
+  --ui-input-disabled-opacity: 0.6;
+}
+
+.ui-input {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ui-input-gap);
+  box-sizing: border-box;
+
+  label {
+    font-size: var(--ui-input-label-size);
+    font-weight: var(--ui-input-label-weight);
+    color: var(--ui-input-label-color);
+    line-height: 1.2;
+
+    &:not(:empty)::after {
+      content: "*";
+      color: var(--ui-input-required-color);
+      font-weight: 400;
+      font-size: var(--ui-input-required-size);
+      margin-left: 2px;
+    }
+  }
+
+  input {
+    border: 1px solid var(--ui-input-border-color);
+    border-radius: var(--ui-input-border-radius);
+    font-size: var(--ui-input-font-size);
+    line-height: var(--ui-input-line-height);
+    padding: var(--ui-input-padding-y) var(--ui-input-padding-x);
+    outline: none;
+    width: 100%;
+    min-height: 40px;
+    box-sizing: border-box;
+    background-color: var(--ui-input-bg);
+
+    &:focus {
+      border-color: var(--ui-input-focus-border-color);
+    }
+
+    &:hover {
+      background-color: var(--ui-input-bg-hover);
+    }
+
+    &[readonly] {
+      background-color: var(--ui-input-bg-readonly);
+      cursor: default;
+    }
+  }
+
+  small {
+    font-size: var(--ui-input-hint-size);
+    line-height: 1.2;
+  }
+
+  .hint-message {
+    color: var(--ui-input-hint-color);
+  }
+
+  &.is-filled input {
+    background-color: var(--ui-input-bg-filled);
+  }
+
+  &.is-error {
+    input {
+      border-color: var(--ui-input-error-color);
+      background-color: var(--ui-input-error-bg);
+    }
+    .hint-message {
+      color: var(--ui-input-error-color);
+    }
+  }
+
+  &.is-disabled {
+    opacity: var(--ui-input-disabled-opacity);
+    pointer-events: none;
+
+    input {
+      background-color: var(--ui-input-bg-disabled);
+    }
+  }
+}

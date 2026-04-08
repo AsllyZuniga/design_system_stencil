@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  .ui-test {
+    border: 8px solid black;
+  }
+  .ui-test__texta {
+    background-color: purple;
+    label {
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+  .ui-test__textb {
+    background-color: aqua;
+    p {
+      font-family: "new sans-serif", sans-serif;
+      font-weight: normal;
+    }
+  }
+}

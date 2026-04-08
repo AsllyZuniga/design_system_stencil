@@ -1,0 +1,62 @@
+:host {
+  display: block;
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .ui-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--table-text, #333);
+    background-color: var(--table-bg, #fff);
+  }
+
+  .ui-table th,
+  .ui-table td {
+    padding: 12px 15px;
+    border: 1px solid var(--table-border, #ddd);
+    text-align: center;
+  }
+
+  .ui-table th {
+    background-color: var(--table-header-bg, #333);
+    color: var(--table-header-text, #f4f4f4);
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .ui-table tr:nth-child(even) {
+    background-color: var(--table-row-alt-bg, #f9f9f9);
+  }
+
+  .ui-table tr:hover {
+    background-color: var(--table-row-hover-bg, #f1f1f1);
+    cursor: pointer;
+  }
+
+  button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+  }
+
+  button:hover {
+    background-color: #1e40af;
+  }
+
+  button.delete {
+    background-color: #dc2626;
+  }
+
+  button.delete:hover {
+    background-color: #991b1b;
+  }
+}
