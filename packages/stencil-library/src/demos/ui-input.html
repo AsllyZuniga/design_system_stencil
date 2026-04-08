@@ -9,23 +9,13 @@
     <script nomodule src="/build/stencil-library.js"></script>
 
     <style>
-      s body {
+      body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #eef2ff, #f8fafc);
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .card {
-        background: white;
+        background: #ffffff;
+        min-height: 100vh;
         padding: 32px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        width: 100%;
-        max-width: 380px;
+        box-sizing: border-box;
       }
 
       h1 {
@@ -75,37 +65,21 @@
     </style>
   </head>
   <body>
-    <div class="card">
-      <h1>Formulario de prueba</h1>
+    <h1>Formulario de prueba</h1>
 
-      <form>
-        <ui-input
-          label="Nombre"
-          name="nombre"
-          input-id="nombre"
-          value="Aslly Zuñiga"
-          required
-        ></ui-input>
-        <ui-select label="Año"></ui-select>
+    <form>
+      <ui-input
+        label="Nombre"
+        name="nombre"
+        input-id="nombre"
+        value="Aslly Zuñiga"
+        required
+      ></ui-input>
 
-        <div class="buttons">
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
-        </div>
-      </form>
-    </div>
-    <script>
-      const options = [
-        { id: "1", value: "2025", label: "2025" },
-        { id: "2", value: "2024", label: "2024" },
-        { id: "3", value: "2023", label: "2023" },
-        { id: "4", value: "2022", label: "2022" },
-        { id: "5", value: "2021", label: "2021" },
-      ];
-
-      document.querySelectorAll("ui-select").forEach((select) => {
-        select.options = options;
-      });
-    </script>
+      <div class="buttons">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
   </body>
 </html>
