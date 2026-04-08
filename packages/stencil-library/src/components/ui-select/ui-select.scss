@@ -1,12 +1,36 @@
 :host {
   display: block;
+  --ui-select-dropdown-border-color: #d1d5db;
+  --ui-select-dropdown-border-radius: 8px;
+  --ui-select-dropdown-bg: #ffffff;
+  --ui-select-dropdown-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   --ui-select-dropdown-offset: 2px;
   --ui-select-dropdown-z-index: 20;
   --ui-select-dropdown-max-height: 180px;
-  --ui-select-dropdown-border-color: #a9a9a9;
-  --ui-select-dropdown-border-radius: 0;
-  --ui-select-dropdown-bg: #ffffff;
-  --ui-select-dropdown-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --ui-select-field-gap: 4px;
+  --ui-select-label-size: 13px;
+  --ui-select-label-weight: 500;
+  --ui-select-label-color: #2d3748;
+  --ui-select-required-color: #e53e3e;
+  --ui-select-trigger-border-color: #bdbdbd;
+  --ui-select-trigger-border-radius: 5px;
+  --ui-select-trigger-bg: #ffffff;
+  --ui-select-trigger-bg-hover: #fbfbfb;
+  --ui-select-trigger-bg-disabled: #f5f5f5;
+  --ui-select-trigger-color: #1f2937;
+  --ui-select-trigger-placeholder-color: #9aa0a6;
+  --ui-select-trigger-padding-y: 6px;
+  --ui-select-trigger-padding-x: 18px;
+  --ui-select-trigger-font-size: 14px;
+  --ui-select-trigger-line-height: 20px;
+  --ui-select-trigger-min-height: 34px;
+  --ui-select-arrow-width: 10px;
+  --ui-select-arrow-height: 10px;
+  --ui-select-arrow-right: 18px;
+  --ui-select-arrow-color: #4b4b4b;
+  --ui-select-hint-size: 12px;
+  --ui-select-hint-color: #718096;
+  --ui-select-error-color: #e53e3e;
   --ui-select-option-padding-y: 4px;
   --ui-select-option-padding-x: 8px;
   --ui-select-option-font-size: 14px;
@@ -16,11 +40,7 @@
   --ui-select-option-active-bg: #2b69c9;
   --ui-select-option-active-color: #ffffff;
   --ui-select-empty-color: #6b7280;
-  --ui-select-arrow-size: 11px;
-  --ui-select-arrow-right: 10px;
-  --ui-select-arrow-color: #111111;
   --ui-select-focus-ring-color: rgba(37, 99, 235, 0.28);
-  --ui-select-error-color: #e53e3e;
   --ui-select-disabled-opacity: 0.65;
 }
 
@@ -28,26 +48,71 @@
   position: relative;
 }
 
-.ui-select-trigger {
-  position: relative;
-  cursor: pointer;
-  outline: none;
+.ui-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-select-field-gap);
 }
 
-.ui-select-trigger ui-input {
-  --ui-input-border-color: #8e8e8e;
-  --ui-input-border-radius: 4px;
-  --ui-input-bg: #f3f3f3;
-  --ui-input-bg-filled: #f3f3f3;
-  --ui-input-bg-hover: #ebebeb;
-  --ui-input-bg-readonly: #f3f3f3;
-  --ui-input-focus-border-color: #6f6f6f;
-  --ui-input-padding-y: 6px;
-  --ui-input-padding-x: 8px;
-  --ui-input-line-height: 20px;
-  --ui-input-font-size: 14px;
-  --ui-input-hint-size: 0;
-  --ui-input-gap: 2px;
+.ui-select-label {
+  font-size: var(--ui-select-label-size);
+  font-weight: var(--ui-select-label-weight);
+  color: var(--ui-select-label-color);
+  line-height: 1.2;
+}
+
+.ui-select-required {
+  color: var(--ui-select-required-color);
+  margin-left: 2px;
+}
+
+.ui-select-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--ui-select-trigger-min-height);
+  box-sizing: border-box;
+  border: 1px solid var(--ui-select-trigger-border-color);
+  border-radius: var(--ui-select-trigger-border-radius);
+  background: var(--ui-select-trigger-bg);
+  color: var(--ui-select-trigger-color);
+  padding: var(--ui-select-trigger-padding-y) var(--ui-select-trigger-padding-x);
+  padding-right: calc(var(--ui-select-trigger-padding-x) + var(--ui-select-arrow-right) + var(--ui-select-arrow-width));
+  font-size: var(--ui-select-trigger-font-size);
+  line-height: var(--ui-select-trigger-line-height);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.ui-select-trigger:hover:not(:disabled) {
+  background: var(--ui-select-trigger-bg-hover);
+}
+
+.ui-select-trigger:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-select-focus-ring-color);
+}
+
+.ui-select-trigger.is-placeholder {
+  color: var(--ui-select-trigger-placeholder-color);
+}
+
+.ui-select-trigger:disabled {
+  cursor: default;
+  background: var(--ui-select-trigger-bg-disabled);
+}
+
+.ui-select-value {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ui-select-arrow {
@@ -56,9 +121,44 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  font-size: var(--ui-select-arrow-size);
-  line-height: 1;
-  color: var(--ui-select-arrow-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ui-select-arrow-width);
+  height: var(--ui-select-arrow-height);
+}
+
+.ui-select-arrow-shape {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--ui-select-arrow-color);
+  border-bottom: 2px solid var(--ui-select-arrow-color);
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.ui-select-hint {
+  min-height: 1em;
+  font-size: var(--ui-select-hint-size);
+  line-height: 1.2;
+  color: var(--ui-select-hint-color);
+}
+
+.ui-select-option {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: var(--ui-select-option-bg);
+  padding: var(--ui-select-option-padding-y) var(--ui-select-option-padding-x);
+  font-size: var(--ui-select-option-font-size);
+  line-height: var(--ui-select-option-line-height);
+  color: var(--ui-select-option-color);
+  cursor: pointer;
+}
+
+.ui-select-option:hover,
+.ui-select-option.is-selected {
+  background: var(--ui-select-option-active-bg);
+  color: var(--ui-select-option-active-color);
 }
 
 .ui-select-dropdown {
@@ -81,29 +181,6 @@
   font-size: var(--ui-select-option-font-size);
   line-height: var(--ui-select-option-line-height);
   color: var(--ui-select-empty-color);
-}
-
-.ui-select-option {
-  width: 100%;
-  text-align: left;
-  border: 0;
-  background: var(--ui-select-option-bg);
-  padding: var(--ui-select-option-padding-y) var(--ui-select-option-padding-x);
-  font-size: var(--ui-select-option-font-size);
-  line-height: var(--ui-select-option-line-height);
-  color: var(--ui-select-option-color);
-  cursor: pointer;
-}
-
-.ui-select-option:hover,
-.ui-select-option.is-selected {
-  background: var(--ui-select-option-active-bg);
-  color: var(--ui-select-option-active-color);
-}
-
-.ui-select-trigger:focus-visible {
-  border-radius: 4px;
-  box-shadow: 0 0 0 3px var(--ui-select-focus-ring-color);
 }
 
 .is-disabled {
