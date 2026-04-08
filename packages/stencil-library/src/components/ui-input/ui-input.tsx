@@ -1,13 +1,13 @@
 import {
+  AttachInternals,
   Component,
-  Prop,
-  h,
   Event,
   EventEmitter,
+  h,
   Method,
+  Prop,
   State,
   Watch,
-  AttachInternals,
 } from "@stencil/core";
 
 @Component({
@@ -17,68 +17,34 @@ import {
   formAssociated: true,
 })
 export class UiInput {
+  @AttachInternals() internals!: ElementInternals;
+
+  @Prop({ mutable: true }) disabled: boolean = false;
+  @Prop() hint?: string;
+  @Prop() inputId!: string;
   @Prop() label?: string;
   @Prop() placeholder: string = "";
-  @Prop() type: string = "text";
-  @Prop() inputId!: string;
-  @Prop() hint?: string;
-  @Prop({ mutable: true }) disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() required: boolean = false;
+  @Prop() type: string = "text";
   @Prop({ mutable: true }) value: string = "";
 
   @State() hasError: boolean = false;
 
-  @AttachInternals() internals: ElementInternals;
-
   @Event({ bubbles: true, composed: true })
   inputChange!: EventEmitter<string>;
 
-  componentWillLoad() {
-    this.internals.setFormValue(this.value);
-  }
-
   @Watch("value")
   handleValueChange(nextValue: string) {
-    this.internals.setFormValue(nextValue ?? "");
+    this.setFormValue(nextValue ?? "");
 
     if (this.hasError && nextValue.trim()) {
       this.clearError();
     }
   }
 
-  private clearError() {
-    this.hasError = false;
-    this.internals.setValidity({});
-  }
-
-  private handleInput = (evt: Event) => {
-    const target = evt.target as HTMLInputElement;
-    this.value = target.value;
-
-    this.inputChange.emit(this.value);
-  };
-
-  private handleBlur = () => {
-    if (this.required && !this.value.trim()) {
-      this.hasError = true;
-      this.internals.setValidity({ valueMissing: true }, "Campo obligatorio");
-    }
-  };
-
-  @Method()
-  async validate(): Promise<boolean> {
-    return this.validateInput();
-  }
-  validateInput() {
-    if (this.required && !this.value.trim()) {
-      this.hasError = true;
-      this.internals.setValidity({ valueMissing: true }, "Campo obligatorio");
-      return false;
-    }
-
-    this.clearError();
-    return true;
+  componentWillLoad() {
+    this.setFormValue(this.value);
   }
 
   formAssociatedCallback(form: HTMLFormElement | null) {
@@ -96,12 +62,55 @@ export class UiInput {
   formResetCallback() {
     this.value = "";
     this.clearError();
-    this.internals.setFormValue("");
+    this.setFormValue("");
   }
 
   formStateRestoreCallback(state: string, _mode: "restore" | "autocomplete") {
     this.value = state || "";
-    this.internals.setFormValue(this.value);
+    this.setFormValue(this.value);
+  }
+
+  @Method()
+  async validate(): Promise<boolean> {
+    return this.validateInput();
+  }
+
+  private handleInput = (evt: Event) => {
+    const target = evt.target as HTMLInputElement;
+    this.value = target.value;
+
+    this.inputChange.emit(this.value);
+  };
+
+  private handleBlur = () => {
+    if (this.required && !this.value.trim()) {
+      this.hasError = true;
+      this.setValidity({ valueMissing: true }, "Campo obligatorio");
+    }
+  };
+
+  private clearError() {
+    this.hasError = false;
+    this.setValidity({});
+  }
+
+  validateInput() {
+    if (this.required && !this.value.trim()) {
+      this.hasError = true;
+      this.setValidity({ valueMissing: true }, "Campo obligatorio");
+      return false;
+    }
+
+    this.clearError();
+    return true;
+  }
+
+  private setFormValue(value: string) {
+    this.internals?.setFormValue?.(value);
+  }
+
+  private setValidity(flags: ValidityStateFlags, message?: string) {
+    this.internals?.setValidity?.(flags, message);
   }
 
   render() {
@@ -109,6 +118,7 @@ export class UiInput {
 
     return (
       <div
+        part="container"
         class={{
           "ui-input": true,
           "is-filled": !!this.value,
@@ -117,9 +127,14 @@ export class UiInput {
           "is-readonly": this.readonly,
         }}
       >
-        {this.label && <label htmlFor={this.inputId}>{this.label}</label>}
+        {this.label && (
+          <label part="label" htmlFor={this.inputId}>
+            {this.label}
+          </label>
+        )}
 
         <input
+          part="input"
           id={this.inputId}
           type={this.type}
           value={this.value}
@@ -130,7 +145,9 @@ export class UiInput {
           onInput={this.handleInput}
           onBlur={this.handleBlur}
         />
-        <small class="hint-message">{hint}</small>
+        <small part="hint" class="hint-message">
+          {hint}
+        </small>
       </div>
     );
   }
