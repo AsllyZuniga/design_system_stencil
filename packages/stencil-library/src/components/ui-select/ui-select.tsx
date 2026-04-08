@@ -212,6 +212,9 @@ export class UiSelect {
   }
 
   render() {
+    const displayValue = this.selectedLabel || this.placeholder;
+    const isPlaceholder = !this.selectedLabel;
+
     return (
       <Host>
         <div
@@ -222,31 +225,42 @@ export class UiSelect {
             "is-error": this.hasValidationError,
           }}
         >
-          <div
-            part="trigger"
-            class="ui-select-trigger"
-            role="combobox"
-            aria-expanded={String(this.isOpen)}
-            aria-disabled={String(this.disabled)}
-            aria-controls={`${this.inputId}-dropdown`}
-            tabIndex={this.disabled ? -1 : 0}
-            onClick={this.handleTriggerClick}
-            onKeyDown={this.handleTriggerKeyDown}
-          >
-            <ui-input
-              exportparts="container,label,input,hint"
-              label={this.label}
-              inputId={this.inputId}
-              hint={this.hasValidationError ? "Campo obligatorio" : undefined}
-              placeholder={this.placeholder}
-              value={this.selectedLabel}
-              readonly={true}
+          <div part="field" class="ui-select-field">
+            {this.label && (
+              <label part="label" id={`${this.inputId}-label`} class="ui-select-label">
+                {this.label}
+                {this.required && <span class="ui-select-required">*</span>}
+              </label>
+            )}
+
+            <button
+              part="trigger"
+              class={{
+                "ui-select-trigger": true,
+                "is-placeholder": isPlaceholder,
+              }}
+              type="button"
+              role="combobox"
+              aria-labelledby={this.label ? `${this.inputId}-label ${this.inputId}-value` : `${this.inputId}-value`}
+              aria-expanded={String(this.isOpen)}
+              aria-disabled={String(this.disabled)}
+              aria-controls={`${this.inputId}-dropdown`}
+              aria-haspopup="listbox"
               disabled={this.disabled}
-              required={this.required}
-            ></ui-input>
-            <span class="ui-select-arrow" aria-hidden="true">
-              ▾
-            </span>
+              onClick={this.handleTriggerClick}
+              onKeyDown={this.handleTriggerKeyDown}
+            >
+              <span part="value" id={`${this.inputId}-value`} class="ui-select-value">
+                {displayValue}
+              </span>
+              <span class="ui-select-arrow" aria-hidden="true">
+                <span class="ui-select-arrow-shape"></span>
+              </span>
+            </button>
+
+            <small part="hint" class="ui-select-hint">
+              {this.hasValidationError ? "Campo obligatorio" : ""}
+            </small>
           </div>
 
           {this.isOpen && (
@@ -267,6 +281,7 @@ export class UiSelect {
 
                 return (
                   <button
+                    key={option.id}
                     part="option"
                     type="button"
                     role="option"
