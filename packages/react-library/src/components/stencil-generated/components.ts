@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 
+import { type UiSelectCustomEvent } from "@asllyzuniga/stencil-library";
 import { UiBadge as UiBadgeElement, defineCustomElement as defineUiBadge } from "@asllyzuniga/stencil-library/dist-custom-elements/ui-badge.js";
 import { UiButton as UiButtonElement, defineCustomElement as defineUiButton } from "@asllyzuniga/stencil-library/dist-custom-elements/ui-button.js";
 import { UiCard as UiCardElement, defineCustomElement as defineUiCard } from "@asllyzuniga/stencil-library/dist-custom-elements/ui-card.js";
@@ -71,10 +72,10 @@ export const UiPanelModal: StencilReactComponent<UiPanelModalElement, UiPanelMod
 });
 
 type UiSelectEvents = {
-    onValueChange: EventName<CustomEvent<{
+    onValueChange: EventName<UiSelectCustomEvent<{
         name?: string;
         value: string | number;
-        option: { id: string; value: string | number; label: string };
+        option: UiSelectOption;
     }>>
 };
 
