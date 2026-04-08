@@ -82,6 +82,7 @@ export namespace Components {
         "visible": boolean;
     }
     interface UiSelect {
+        "close": () => Promise<void>;
         /**
           * @default false
          */
@@ -92,14 +93,11 @@ export namespace Components {
         "error": boolean;
         "label"?: string;
         "name"?: string;
+        "open": () => Promise<void>;
         /**
           * @default []
          */
-        "options": {
-    id: string;
-    value: string | number;
-    label: string;
-  }[];
+        "options": UiSelectOption[];
         /**
           * @default "Select"
          */
@@ -108,6 +106,7 @@ export namespace Components {
           * @default false
          */
         "required": boolean;
+        "validate": () => Promise<boolean>;
         "value"?: string | number;
     }
     interface UiTable {
@@ -195,7 +194,7 @@ declare global {
         "valueChange": {
     name?: string;
     value: string | number;
-    option: { id: string; value: string | number; label: string };
+    option: UiSelectOption;
   };
     }
     interface HTMLUiSelectElement extends Components.UiSelect, HTMLStencilElement {
@@ -344,16 +343,12 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: UiSelectCustomEvent<{
     name?: string;
     value: string | number;
-    option: { id: string; value: string | number; label: string };
+    option: UiSelectOption;
   }>) => void;
         /**
           * @default []
          */
-        "options"?: {
-    id: string;
-    value: string | number;
-    label: string;
-  }[];
+        "options"?: UiSelectOption[];
         /**
           * @default "Select"
          */
@@ -435,13 +430,13 @@ declare namespace LocalJSX {
         "visible": boolean;
     }
     interface UiSelectAttributes {
-        "name": string;
-        "label": string;
-        "placeholder": string;
-        "value": string;
         "disabled": boolean;
         "error": boolean;
+        "label": string;
+        "name": string;
+        "placeholder": string;
         "required": boolean;
+        "value": string;
     }
     interface UiTagAttributes {
         "text": string;
