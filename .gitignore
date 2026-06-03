@@ -25,3 +25,6 @@ yarn.lock
 # Environment variables (if used)
 .env
 .env.local
+
+.npmrc
+.npmrc
