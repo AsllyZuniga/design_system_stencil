@@ -4,71 +4,65 @@
     <meta charset="UTF-8" />
     <title>Stencil UI Demos</title>
 
+    <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="/build/stencil-library.css" />
 
     <script type="module" src="/build/stencil-library.esm.js"></script>
     <script nomodule src="/build/stencil-library.js"></script>
 
-    <style>
-      body {
-        font-family: "Segoe UI", Roboto, sans-serif;
-        background-color: #f4f6f9;
-        margin: 0;
-        padding: 40px;
-        color: #2c3e50;
-      }
-
-      h1 {
-        text-align: center;
-        margin-bottom: 40px;
-        font-weight: 600;
-      }
-
-      ul {
-        list-style: none;
-        padding: 0;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-
-      li {
-        margin-bottom: 12px;
-      }
-
-      a {
-        display: block;
-        padding: 12px 18px;
-        background: #ffffff;
-        border-radius: 8px;
-        text-decoration: none;
-        color: #34495e;
-        font-weight: 500;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        transition: all 0.2s ease-in-out;
-      }
-
-      a:hover {
-        background-color: #2d6cdf;
-        color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-      }
-    </style>
   </head>
 
   <body>
-    <h1>UI Components – Demos</h1>
+    <header class="topbar">
+      <h1>UI Components - Demos</h1>
+      <p class="subtitle">
+        Playground organized by category. Only components available in this project are shown.
+      </p>
+    </header>
 
-    <ul>
-      <li><a href="./demos/ui-badge.html">UI Badge</a></li>
-      <li><a href="./demos/ui-button.html">UI Button</a></li>
-      <li><a href="./demos/ui-card.html">UI Card</a></li>
-      <li><a href="./demos/ui-input.html">UI Input</a></li>
-      <li><a href="./demos/ui-panel-modal.html">UI Panel Modal</a></li>
-      <li><a href="./demos/ui-select.html">UI Select</a></li>
-      <li><a href="./demos/ui-table.html">UI Table</a></li>
-      <li><a href="./demos/ui-tag.html">UI Tag</a></li>
-      <li><a href="./demos/ui-test.html">UI Test</a></li>
-    </ul>
+    <div class="shell">
+      <main class="content" aria-label="Catalogo de componentes">
+        <article class="doc-page">
+          <section id="home" class="doc-section">
+            <h2>Home</h2>
+            <p>
+              Welcome to the playground. This page shows the component sections available in this repo.
+            </p>
+          </section>
+
+          <section id="form-controls" class="doc-section">
+            <h2>Form Controls</h2>
+            <ul class="doc-list">
+              <li><a href="./demos/ui-input.html">UI Input</a></li>
+              <li><a href="./demos/ui-select.html">UI Select</a></li>
+            </ul>
+          </section>
+
+          <section id="buttons" class="doc-section">
+            <h2>Buttons</h2>
+            <ul class="doc-list">
+              <li><a href="./demos/ui-button.html">UI Button</a></li>
+            </ul>
+          </section>
+
+          <section id="data-display" class="doc-section">
+            <h2>Data Display</h2>
+            <ul class="doc-list">
+              <li><a href="./demos/ui-table.html">UI Table</a></li>
+              <li><a href="./demos/ui-card.html">UI Card</a></li>
+              <li><a href="./demos/ui-badge.html">UI Badge</a></li>
+              <li><a href="./demos/ui-tag.html">UI Tag</a></li>
+            </ul>
+          </section>
+
+          <section id="overlays" class="doc-section">
+            <h2>Panels</h2>
+            <ul class="doc-list">
+              <li><a href="./demos/ui-panel-modal.html">UI Panel Modal</a></li>
+            </ul>
+          </section>
+        </article>
+      </main>
+    </div>
   </body>
 </html>

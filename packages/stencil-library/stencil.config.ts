@@ -24,6 +24,10 @@ export const config: Config = {
       serviceWorker: null,
       copy: [
         {
+          src: "index.css",
+          dest: "index.css",
+        },
+        {
           src: "demos",
           dest: "demos",
         },

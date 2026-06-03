@@ -1,31 +1,56 @@
 :host {
   display: block;
+  --ui-table-radius: 12px;
+  --ui-table-cell-padding-y: 12px;
+  --ui-table-cell-padding-x: 14px;
+  --ui-table-head-size: 13px;
+  --ui-table-body-size: 14px;
+  --ui-table-row-gap-border: 1px solid var(--table-border, #ddd);
+  --ui-table-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --ui-table-button-height: 34px;
+  --ui-table-button-radius: 9px;
+  --ui-table-button-gap: 8px;
+  --ui-table-transition: 0.18s ease;
 
   .table-container {
     overflow-x: auto;
+    border-radius: var(--ui-table-radius);
+    box-shadow: var(--ui-table-shadow);
   }
 
   .ui-table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 14px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 14px 0;
+    font-size: var(--ui-table-body-size);
     color: var(--table-text, #333);
     background-color: var(--table-bg, #fff);
+    min-width: 620px;
+    border-radius: var(--ui-table-radius);
+    overflow: hidden;
   }
 
   .ui-table th,
   .ui-table td {
-    padding: 12px 15px;
-    border: 1px solid var(--table-border, #ddd);
-    text-align: center;
+    padding: var(--ui-table-cell-padding-y) var(--ui-table-cell-padding-x);
+    border-bottom: var(--ui-table-row-gap-border);
+    text-align: left;
+    vertical-align: middle;
   }
 
   .ui-table th {
     background-color: var(--table-header-bg, #333);
     color: var(--table-header-text, #f4f4f4);
-    font-weight: bold;
+    font-size: var(--ui-table-head-size);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
     white-space: nowrap;
+  }
+
+  .ui-table tbody tr:last-child td {
+    border-bottom: none;
   }
 
   .ui-table tr:nth-child(even) {
@@ -37,19 +62,47 @@
     cursor: pointer;
   }
 
+  .ui-table td > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ui-table-button-gap);
+    align-items: center;
+  }
+
   button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--ui-table-button-height);
     background-color: #2563eb;
     color: white;
     border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
+    border-radius: var(--ui-table-button-radius);
+    padding: 7px 12px;
     cursor: pointer;
     font-size: 12px;
-    transition: background-color 0.2s;
+    font-weight: 600;
+    line-height: 1.2;
+    transition:
+      background-color var(--ui-table-transition),
+      transform var(--ui-table-transition),
+      box-shadow var(--ui-table-transition);
   }
 
   button:hover {
     background-color: #1e40af;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
+  }
+
+  button:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  button:focus-visible {
+    outline: 2px solid #1e40af;
+    outline-offset: 1px;
   }
 
   button.delete {
@@ -58,5 +111,30 @@
 
   button.delete:hover {
     background-color: #991b1b;
+  }
+
+  @media (max-width: 1024px) {
+    .ui-table {
+      min-width: 560px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ui-table {
+      min-width: 520px;
+      margin: 10px 0;
+    }
+
+    .ui-table th,
+    .ui-table td {
+      padding: 10px 11px;
+      font-size: 13px;
+    }
+
+    button {
+      min-height: 32px;
+      padding: 6px 10px;
+      font-size: 11px;
+    }
   }
 }

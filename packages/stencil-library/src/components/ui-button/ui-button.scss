@@ -1,34 +1,81 @@
 :host {
   display: inline-block;
+  --ui-button-height: 42px;
+  --ui-button-radius: 12px;
+  --ui-button-padding-y: 10px;
+  --ui-button-padding-x: 18px;
+  --ui-button-font-size: 14px;
+  --ui-button-font-weight: 600;
+  --ui-button-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+  --ui-button-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.18);
+  --ui-button-shadow-active: 0 5px 12px rgba(0, 0, 0, 0.12);
 
   button {
-    font-size: 14px;
-    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--ui-button-height);
+    font-size: var(--ui-button-font-size);
+    line-height: 1.2;
+    padding: var(--ui-button-padding-y) var(--ui-button-padding-x);
     border: none;
-    border-radius: 20px;
+    border-radius: var(--ui-button-radius);
     cursor: pointer;
-    font-weight: 600;
-    
-  background-color: black;
+    font-weight: var(--ui-button-font-weight);
+    background-color: black;
     color: #f9f9f9;
-    //font-family: 'OpenDyslexic', Consolas, 'Courier New', monospace
-;
+    box-shadow: var(--ui-button-shadow);
+    transition:
+      transform 0.16s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--ui-button-shadow-hover);
+  }
+
+  button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--ui-button-shadow-active);
+  }
+
+  button:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
   }
 
   button:disabled {
-    opacity: 0.6;
+    opacity: 0.55;
     cursor: not-allowed;
+    box-shadow: none;
   }
+
   :host(.react-transaction) button {
     background-color: #d3d3d3;
     color: #000;
-    border-radius: 6px;
-    padding: 8px 16px;
+    border-radius: 10px;
+    min-height: 36px;
+    padding: 8px 14px;
     font-weight: 500;
+    box-shadow: none;
   }
 
   :host(.react-transaction) button:hover {
     background-color: #c0c0c0;
+  }
+
+  @media (max-width: 640px) {
+    button {
+      width: 100%;
+      min-height: 40px;
+      padding: 9px 14px;
+    }
+
+    :host(.react-transaction) button {
+      min-height: 36px;
+    }
   }
 
 }

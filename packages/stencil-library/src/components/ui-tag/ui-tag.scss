@@ -2,27 +2,38 @@
   display: inline-block;
 
   .ui-tag {
-    border-radius: 10px;
-    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    line-height: 1;
 
-    span{
+    span {
       font-size: 12px;
       font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
     }
   }
-  .tag--success{
+
+  .tag--success {
     background-color: #619B2E;
     color: #fff;
   }
-  .tag--warning{
+
+  .tag--warning {
     background-color: #e12f2f;
     color: #fff;
   }
-  .tag--danger{
+
+  .tag--danger {
     background-color: #fff1f0;
     color: #fff;
   }
-  .tag--info{
+
+  .tag--info {
     background-color: #f7f3e3;
     color: #fff;
   }
